@@ -1,10 +1,10 @@
 const axios = require('axios');
 const mysql = require('mysql');
 var connection = mysql.createConnection({
-    host: '192.168.3.100',
-    user: 'root',
-    password: '!r00t!',
-    database: 'gta_siape_3'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.SECRET,
+    database: process.env.DATABSE
 });
 const delay = ms => {
     return new Promise(resolve => setTimeout(resolve, ms))
