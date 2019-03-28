@@ -1,0 +1,23 @@
+{
+  "name": "gta-catcher",
+  "version": "1.0.0",
+  "description": "Script para capturar GTA's da API SIAPEC3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanPHP7/gta-catcher.git"
+  },
+  "author": "Carlos Daniel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanPHP7/gta-catcher/issues"
+  },
+  "homepage": "https://github.com/DanPHP7/gta-catcher#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "mysql": "^2.16.0"
+  }
+}
