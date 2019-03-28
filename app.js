@@ -3,7 +3,7 @@ const axios = require('axios')
 const mysql = require('mysql')
 var connection = mysql.createConnection({
     host: process.env.HOST,
-    user: process.env.USER,
+    user: 'root',
     password: process.env.SECRET,
     database: process.env.DATABSE
 })
@@ -15,7 +15,6 @@ const gtaSerieJ = count(3).map((_, index) => ({ numeroGta: index + 1, serieGta: 
 const gtas = async function () {
     for (const item of gtaSerieJ) {
         await delay(1000)
-        console.log(process.env.SECRET)
         const result = await axios.post('https://siapec3.adepara.pa.gov.br/siapec3/services/rest/gta/consultarGtaPorNumeroSerie/', { "numeroGta": item.numeroGta, "serieGta": item.serieGta, }).then(outPut => (outPut.data.gta))
         if (result == undefined) {
             console.log('GTA Inválida!')
@@ -33,4 +32,3 @@ const gtas = async function () {
     }
 }
 gtas()
-
