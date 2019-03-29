@@ -11,9 +11,15 @@ const delay = ms => {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 const count = length => Array.from({ length })
-const gtaSerieJ = count(3).map((_, index) => ({ numeroGta: index + 1, serieGta: 'J' }))
+const range = (max, min = 0, serie) => {
+    const length = max - min
+    return count(length).map((_, index) => ({
+        numeroGta: index + min, serieGta: `${serie}`
+    }))
+}
+const gta5 = range(999999, 12242, 'J');
 const gtaExt = async function () {
-    for (const item of gtaSerieJ) {
+    for (const item of gta5) {
         delay(1000)
         const result = await axios.post(
             'https://siapec3.adepara.pa.gov.br/siapec3/services/rest/gta/consultarGtaPorNumeroSerie/',
@@ -33,7 +39,7 @@ const gtaExt = async function () {
                     await connection.query(`INSERT INTO gta_siape_3.ext (nrGta, nomeEstratificacao, nomeEstratificacaoSimplificada, quantidadeAnimais, dsSerie) VALUES ('${linha.nrGta}', '${linha.nomeEstratificacao}', '${linha.nomeEstratificacaoSimplificada}', '${linha.quantidadeAnimais}', '${linha.dsSerie}')`, function (err, returned, fields) {
                         if (err) throw err;
                         console.log(`Adicionou os Animais GTA ${linha.nrGta} no banco!`);
-                        if (fields) {
+                        if (returned) {
                             console.log('Fim!')
                         }
                     })
