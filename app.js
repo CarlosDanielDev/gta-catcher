@@ -3,9 +3,9 @@ const axios = require('axios')
 const mysql = require('mysql')
 var connection = mysql.createConnection({
     host: `${process.env.HOST}`,
-    user: `${process.env.USER}`,
+    user: 'root',
     password: `${process.env.SECRET}`,
-    database: `${process.env.DATABSE}`
+    database: `${process.env.DATABASE}`
 })
 const delay = ms => {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -17,7 +17,7 @@ const range = (max, min = 0, serie) => {
         numeroGta: index + min, serieGta: `${serie}`
     }))
 }
-const gta5 = range(999999, 6798, 'J');
+const gta5 = range(999999, 13607, 'J');
 const gtas = async function () {
     for (const item of gta5) {
         await delay(1000)
@@ -31,7 +31,7 @@ const gtas = async function () {
                         if (err) {
                             console.log(`erro:${err}`)
                         }
-                        console.log(`Adicionou a GTA no banco!`)
+                        console.log(`Adicionou a GTA ${e.nrGta} no banco!`)
                     })
             })
         }

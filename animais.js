@@ -17,7 +17,7 @@ const range = (max, min = 0, serie) => {
         numeroGta: index + min, serieGta: `${serie}`
     }))
 }
-const gta5 = range(999999, 12242, 'J');
+const gta5 = range(999999, 15505, 'J');
 const gtaExt = async function () {
     for (const item of gta5) {
         delay(1000)
